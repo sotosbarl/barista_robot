@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<launch>
+
+	<!-- arguments -->
+	<include file="$(find rosplan_planning_system)/launch/interfaced_planning_system.launch" >
+	<arg name="problem_path" default="$(find rosplan_demos)/src/common/problem_waypoints.pddl" />
+	<arg name="domain_path"	default="$(find rosplan_demos)/src/common/domain_waypoints.pddl" />
+	</include>
+
+
+	<!-- sim actions -->
+	<!--include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+		<arg name="pddl_action_name" value="pick_up_container" />
+	</include>
+	<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+		<arg name="pddl_action_name" value="drop_container" />
+	</include>
+	<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+		<arg name="pddl_action_name" value="fill_shot_glass_with_ingredient" />
+	</include>
+	<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+		<arg name="pddl_action_name" value="clean_shot_glass" />
+	</include>
+
+	<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+		<arg name="pddl_action_name" value="clear_shot_glass" />
+	</include>
+	<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+		<arg name="pddl_action_name" value="pour_ingredient_from_shot_shot_glass_to_clean_pitcher" />
+	</include>
+	<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+		<arg name="pddl_action_name" value="pour_ingredient_from_shot_glass_to_used_pitcher" />
+	</include>
+	<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+		<arg name="pddl_action_name" value="clean_pitcher" />
+	</include>
+<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+		<arg name="pddl_action_name" value="clear_pitcher" />
+	</include>
+<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+		<arg name="pddl_action_name" value="make_drink_in_pitcher" />
+	</include>
+
+
+	<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+		<arg name="pddl_action_name" value="pour_beverage_from_pitcher_to_cup" />
+	</include>
+<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+		<arg name="pddl_action_name" value="clean_cup" />
+	</include-->
+<!--include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
+		<arg name="pddl_action_name" value="clear_cup" />
+	</include-->
+
+<!-- dock action interface -->
+
+	<!--node name="rosplan_interface_pour_beverage_from_pitcher_to_cup" pkg="rosplan_planning_system" type="tutorialInterface" respawn="false" output="screen">
+		<param name="knowledge_base"		value="rosplan_knowledge_base" />
+		<param name="pddl_action_name"		value="pour_beverage_from_pitcher_to_cup" />
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+	</node-->
+	<node name="rosplan_interface_goto_waypoint" pkg="rosplan_planning_system" type="tutorialInterface" respawn="false" output="screen">
+		<param name="knowledge_base"		value="rosplan_knowledge_base" />
+		<param name="pddl_action_name"		value="goto_waypoint" />
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+	</node>
+	<node name="rosplan_interface_enter_elevator" pkg="rosplan_planning_system" type="tutorialInterface" respawn="false" output="screen">
+		<param name="knowledge_base"		value="rosplan_knowledge_base" />
+		<param name="pddl_action_name"		value="enter_elevator" />
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+	</node>
+	<node name="rosplan_interface_change_map" pkg="rosplan_planning_system" type="tutorialInterface" respawn="false" output="screen">
+		<param name="knowledge_base"		value="rosplan_knowledge_base" />
+		<param name="pddl_action_name"		value="change_map" />
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+	</node>
+	<node name="rosplan_interface_exit_elevator" pkg="rosplan_planning_system" type="tutorialInterface" respawn="false" output="screen">
+		<param name="knowledge_base"		value="rosplan_knowledge_base" />
+		<param name="pddl_action_name"		value="exit_elevator" />
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+	</node>
+	<node name="rosplan_interface_greet_person" pkg="rosplan_planning_system" type="tutorialInterface" respawn="false" output="screen">
+		<param name="knowledge_base"		value="rosplan_knowledge_base" />
+		<param name="pddl_action_name"		value="greet_person" />
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+	</node>
+	<node name="rosplan_interface_guide_person" pkg="rosplan_planning_system" type="tutorialInterface" respawn="false" output="screen">
+		<param name="knowledge_base"		value="rosplan_knowledge_base" />
+		<param name="pddl_action_name"		value="guide_person" />
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+	</node>
+	<node name="rosplan_interface_dock" pkg="rosplan_planning_system" type="tutorialInterface" respawn="false" output="screen">
+		<param name="knowledge_base"		value="rosplan_knowledge_base" />
+		<param name="pddl_action_name"		value="dock" />
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+	</node>
+	<node name="rosplan_interface_undock" pkg="rosplan_planning_system" type="tutorialInterface" respawn="false" output="screen">
+		<param name="knowledge_base"		value="rosplan_knowledge_base" />
+		<param name="pddl_action_name"		value="undock" />
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+	</node>
+	<node name="rosplan_interface_localise" pkg="rosplan_planning_system" type="tutorialInterface" respawn="false" output="screen">
+		<param name="knowledge_base"		value="rosplan_knowledge_base" />
+		<param name="pddl_action_name"		value="localise" />
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+	</node>
+
+
+
+</launch>

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<launch>
+
+	<!-- arguments -->
+	<include file="$(find rosplan_planning_system)/launch/interfaced_planning_system.launch" >
+	<arg name="problem_path" default="$(find rosplan_demos)/src/common/problem.pddl" />
+	<arg name="domain_path"	default="$(find rosplan_demos)/src/common/domain.pddl" />
+	</include>
+
+
+	
+
+	<node name="rosplan_interface_make_drink_in_pitcher" pkg="rosplan_planning_system" type="tutorialInterface" respawn="false" output="screen">
+		<param name="knowledge_base"		value="rosplan_knowledge_base" />
+		<param name="pddl_action_name"		value="make_drink_in_pitcher" />
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+	</node>
+	
+	
+	<node name="rosplan_interface_pour_ingredient_from_shot_glass_to_used_pitcher" pkg="rosplan_planning_system" type="tutorialInterface" respawn="false" output="screen">
+		<param name="knowledge_base"		value="rosplan_knowledge_base" />
+		<param name="pddl_action_name"		value="pour_ingredient_from_shot_glass_to_used_pitcher" />
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+	</node>
+	<node name="rosplan_interface_pour_ingredient_from_shot_shot_glass_to_clean_pitcher" pkg="rosplan_planning_system" type="tutorialInterface" respawn="false" output="screen">
+		<param name="knowledge_base"		value="rosplan_knowledge_base" />
+		<param name="pddl_action_name"		value="pour_ingredient_from_shot_shot_glass_to_clean_pitcher" />
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+	</node>
+	
+
+	<node name="rosplan_interface_fill_shot_glass_with_ingredient" pkg="rosplan_planning_system" type="tutorialInterface" respawn="false" output="screen">
+		<param name="knowledge_base"		value="rosplan_knowledge_base" />
+		<param name="pddl_action_name"		value="fill_shot_glass_with_ingredient" />
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+	</node>
+	<node name="rosplan_interface_pick_up_container" pkg="rosplan_planning_system" type="tutorialInterface" respawn="false" output="screen">
+		<param name="knowledge_base"		value="rosplan_knowledge_base" />
+		<param name="pddl_action_name"		value="pick_up_container" />
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+	</node>
+	<node name="rosplan_interface_drop_container" pkg="rosplan_planning_system" type="tutorialInterface" respawn="false" output="screen">
+		<param name="knowledge_base"		value="rosplan_knowledge_base" />
+		<param name="pddl_action_name"		value="drop_container" />
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+	</node>
+
+<node name="rosplan_interface_pour_beverage_from_pitcher_to_cup" pkg="rosplan_planning_system" type="tutorialInterface" respawn="false" output="screen">
+		<param name="knowledge_base"		value="rosplan_knowledge_base" />
+		<param name="pddl_action_name"		value="pour_beverage_from_pitcher_to_cup" />
+		<param name="action_dispatch_topic" value="/rosplan_plan_dispatcher/action_dispatch" />
+		<param name="action_feedback_topic" value="/rosplan_plan_dispatcher/action_feedback" />
+	</node>
+
+
+</launch>
