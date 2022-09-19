@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="paused" default="false"/>
+  <arg name="gazebo_gui" default="true"/>
+  <arg name="urdf_path" default="$(find robot_manipulator)/urdf/mrm.xacro"/>
+  <arg name="world_name" default="worlds/empty.world"/>
+  <arg name="robot_spawn_position_z_axis" default="0.01"/>
+
+  <!-- startup simulated world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" default="$(arg world_name)"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="gui" value="$(arg gazebo_gui)"/>
+  </include>
+
+  <!-- send robot urdf to param server -->
+  <param name="robot_description" textfile="$(arg urdf_path)" />
+
+  
+
+
+
+</launch>

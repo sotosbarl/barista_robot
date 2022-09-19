@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+<param name="/use_sim_time" value="true" />
+
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="verbose" default="true"/>
+
+<include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="debug" value="$(arg debug)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="verbose" value="$(arg verbose)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="world_name" default="$(find robot_manipulator)/world/barista.world"/>
+</include>
+
+    
+    <group ns="/robot_manipulator">
+        
+        <!-- Robot model -->
+        <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find robot_manipulator)/urdf/mrm_2_hands.xacro'" />
+        <arg name="x" default="0"/>
+        <arg name="y" default="0"/>
+        <arg name="z" default="0.5"/>
+        
+        <!-- Spawn the robot model -->
+        <node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+              args="-urdf -param robot_description -model robot_manipulator -x $(arg x) -y $(arg y) -z $(arg z)  -J link_06__link_07 0.0
+              -J link_06__link_08 0  -J link_14__link_15 0.0
+              -J link_14__link_16 0" />
+      
+        <!-- Load controllers -->
+        <rosparam command="load" file="$(find robot_manipulator)/config/joints.yaml" />
+        
+        <!-- Controllers -->
+        <node name="controller_spawner" pkg="controller_manager" type="spawner"
+            respawn="false" output="screen" ns="/mrm"
+            args="--namespace=/robot_manipulator
+            joint_state_controller
+            joint1_position_controller
+joint2_position_controller
+joint3_position_controller
+joint4_position_controller
+joint5_position_controller
+joint6_position_controller
+joint6a_position_controller
+joint7_position_controller
+joint8_position_controller
+joint9_position_controller
+joint10_position_controller
+joint11_position_controller
+joint12_position_controller
+joint13_position_controller
+joint14_position_controller
+joint14a_position_controller
+joint15_position_controller
+joint16_position_controller  ">
+        </node>
+        
+        <!-- rqt -->
+        <node name="rqt_reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure" />
+        <node name="rqt_publisher" pkg="rqt_publisher" type="rqt_publisher" />
+    
+    </group>
+          
+</launch>

@@ -1,0 +1,169 @@
+<?xml version="1.0" ?>
+
+<robot name="mrm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <!-- BGN - Include -->
+  <xacro:include filename="$(find robot_manipulator)/urdf/robot_parameters.xacro" />
+  <xacro:include filename="$(find robot_manipulator)/urdf/links_joints.xacro" />
+  <!-- END - Include -->
+  
+  <!-- BGN - Robot description -->
+  <m_link_box name="${link_00_name}"
+              origin_rpy="0 0 0" origin_xyz="0 0 0"
+              mass="1024"
+              ixx="170.667" ixy="0" ixz="0"
+              iyy="170.667" iyz="0"
+              izz="170.667"
+              size="1.5 0.5 1" 
+	      />
+              
+  <m_joint name="${link_00_name}__${link_01_name}" type="revolute"
+           axis_xyz="0 0 1"
+           origin_rpy="0 0 0" origin_xyz="0.3 0 0.2"
+           parent="base_link" child="link_01"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5" />
+           
+  <m_link_mesh name="${link_01_name}"
+              origin_rpy="0 0 0" origin_xyz="0 0 0"
+              mass="15.633"
+              ixx="13.235" ixy="0" ixz="0"
+              iyy="13.235" iyz="0"
+              izz="9.655"
+              meshfile="package://robot_manipulator/meshes/Link1-v2.stl"
+              meshscale="0.001 0.001 0.001" />
+  
+  
+              
+  <m_joint name="${link_01_name}__${link_02_name}" type="revolute"
+           axis_xyz="0 1 0"
+           origin_rpy="0 0 0" origin_xyz="0 0 0.4"
+           parent="link_01" child="link_02"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5" />
+           
+  <m_link_cylinder name="${link_02_name}"
+              origin_rpy="0 0 0" origin_xyz="0 0 0.2"
+              mass="5.906"
+
+              ixx="12.679" ixy="0" ixz="0"
+              iyy="12.679" iyz="0"
+              izz="0.651"
+              radius="0.05" length="0.4" />
+              
+  <m_joint name="${link_02_name}__${link_03_name}" type="revolute"
+           axis_xyz="0 1 0"
+           origin_rpy="0 0 0" origin_xyz="0 0 0.4"
+           parent="link_02" child="link_03"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5" />
+           
+  <m_link_cylinder name="${link_03_name}"
+              origin_rpy="0 0 0" origin_xyz="0 0 0.3"
+              mass="5.906"
+              ixx="12.679" ixy="0" ixz="0"
+              iyy="12.679" iyz="0"
+              izz="0.651"
+              radius="0.05" length="0.6" />
+              
+  <m_joint name="${link_03_name}__${link_04_name}" type="revolute"
+           axis_xyz="0 1 0"
+           origin_rpy="0 0 0" origin_xyz="0 0 0.6"
+           parent="link_03" child="link_04"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5" />
+           
+  <m_link_cylinder name="${link_04_name}"
+             origin_rpy="0 0 0" origin_xyz="0 0 0.2"
+              mass="5.906"
+              ixx="12.679" ixy="0" ixz="0"
+              iyy="12.679" iyz="0"
+              izz="0.651"
+              radius="0.05" length="0.4" />
+              
+  <m_joint name="${link_04_name}__${link_05_name}" type="revolute"
+           axis_xyz="0 1 0"
+           origin_rpy="0 0 0" origin_xyz="0 0 0.4"
+           parent="link_04" child="link_05"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5" />
+           
+  <m_link_box name="${link_05_name}"
+              origin_rpy="0 0 0" origin_xyz="0 0 0.1"
+              mass="1.056"
+              ixx="0.479" ixy="0" ixz="0"
+              iyy="0.479" iyz="0"
+              izz="0.204"
+              size="0.05 0.1 0.2" />
+
+  <m_joint name="${link_05_name}__${link_06_name}" type="revolute"
+           axis_xyz="0 0 1"
+           origin_rpy="0 0 0" origin_xyz="0 0 0.2"
+           parent="link_05" child="link_06"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5" />
+
+
+<m_link_box name="${link_06_name}"
+              origin_rpy="0 0 0" origin_xyz="0 0 0"
+              mass="1"
+              ixx="170.667" ixy="0" ixz="0"
+              iyy="170.667" iyz="0"
+              izz="170.667"
+              size="0.03 0.3 0.01" />
+
+
+<m_joint name="${link_06_name}__${link_07_name}" type="prismatic"
+           axis_xyz="0 1 0"
+           origin_rpy="0 0 0" origin_xyz="0 -0.15 0"
+
+           parent="link_06" child="link_07"
+           limit_e="1000" limit_l="-0.2" limit_u="0.2" limit_v="0.5" />
+
+
+ <m_link_box name="${link_07_name}"
+              origin_rpy="0 0 0" origin_xyz="0 0 0.05"
+              mass="1"
+              ixx="170.667" ixy="0" ixz="0"
+              iyy="170.667" iyz="0"
+              izz="170.667"
+              size="0.03 0.03 0.1" />
+
+<m_joint name="${link_06_name}__${link_08_name}" type="prismatic"
+           axis_xyz="0 1 0"
+           origin_rpy="0 0 0" origin_xyz="0 0.15 0"
+
+           parent="link_06" child="link_08"
+           limit_e="1000" limit_l="-0.2" limit_u="0.2" limit_v="0.5" />
+
+
+ <m_link_box name="${link_08_name}"
+              origin_rpy="0 0 0" origin_xyz="0 0 0.05"
+              mass="1"
+              ixx="170.667" ixy="0" ixz="0"
+              iyy="170.667" iyz="0"
+              izz="170.667"
+              size="0.03 0.03 0.1" />
+  
+              
+  <!-- END - Robot description -->
+  
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    </plugin>
+  </gazebo>
+
+<gazebo>
+   <plugin name="gazebo_grasp_fix" filename="libgazebo_grasp_fix.so">
+        <arm>
+           <arm_name>name-of-arm</arm_name>
+           <palm_link> {link_06_name}  </palm_link>
+           <gripper_link> {link_07_name} </gripper_link>
+           <gripper_link> {link_08_name} </gripper_link>
+           <gripper_link> ... </gripper_link>
+        </arm>
+       <forces_angle_tolerance>100</forces_angle_tolerance>
+       <update_rate>4</update_rate>
+       <grip_count_threshold>4</grip_count_threshold>
+       <max_grip_count>8</max_grip_count>
+       <release_tolerance>0.005</release_tolerance>
+       <disable_collisions_on_attach>false</disable_collisions_on_attach>
+       <contact_topic>__default_topic__</contact_topic>
+    </plugin>
+</gazebo>
+  
+</robot>
